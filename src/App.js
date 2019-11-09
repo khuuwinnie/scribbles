@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Nav from './components/Nav';
 import List from './components/List';
@@ -12,12 +12,18 @@ class App extends Component {
         };
     }
 
+    toggleNote = () => {
+        this.setState({
+            showNote: ! this.state.showNote
+        });
+    }
+
     render() {
         const { showNote } = this.state;
 
         return (
             <div className="App">
-            <Nav />
+            <Nav toggleNote={this.toggleNote} showNote={showNote} />
             { showNote ? <Note /> : <List /> }
             </div>
         );
